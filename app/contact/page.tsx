@@ -73,7 +73,7 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <a href="tel:+27123456789" className="text-lg font-semibold text-blue-600 hover:underline">
-                +27 12 345 6789
+                 +276 656 64326
               </a>
             </CardContent>
           </Card>
