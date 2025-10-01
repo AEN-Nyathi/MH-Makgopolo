@@ -72,7 +72,7 @@ export default function ContactPage() {
               <CardDescription>Call us during business hours</CardDescription>
             </CardHeader>
             <CardContent>
-              <a href="tel:+27123456789" className="text-lg font-semibold text-blue-600 hover:underline">
+              <a href="tel:+27665664326" className="text-lg font-semibold text-blue-600 hover:underline">
                  +276 656 64326
               </a>
             </CardContent>
