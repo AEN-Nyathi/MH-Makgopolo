@@ -107,7 +107,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Pretoria, Gauteng, South Africa</span>
+                <span className="text-sm">lulekani, Phalabowra, limpopo South Africa</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 flex-shrink-0" />
