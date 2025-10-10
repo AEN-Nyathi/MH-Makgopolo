@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Clock, DollarSign } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -31,7 +31,7 @@ export default async function CoursesPage() {
   const courses = await getAllCourses();
 
   const gradeCategories = [
-    { name: 'Goals Guarding Certifications', filter: ['E', 'D', 'C', 'B'] },
+    { name: 'Goals Guarding Certifications', filter: ['E', 'D', 'C', 'B', 'A'] },
     { name: 'Specialized Training', filter: ['Specialized'] },
     { name: 'Combo Packages', filter: ['Combo'] },
     { name: 'Other Courses', filter: ['Entry'] },
@@ -58,7 +58,7 @@ export default async function CoursesPage() {
             <h2 className="text-2xl md:text-3xl font-bold mb-6">{category.name}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {categoryCourses.map((course) => (
-                <Card key={course.id} className="hover:shadow-lg transition-shadow flex flex-col">
+                <Card key={course.id} className="card-elevated hover:shadow-lg transition-shadow flex flex-col">
                   <CardHeader>
                     <div className="flex justify-between items-start mb-2">
                       <Badge className="w-fit">{course.grade_level}</Badge>
@@ -91,13 +91,13 @@ export default async function CoursesPage() {
         );
       })}
 
-      <div className="mt-16 bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
+      <div className="mt-16 bg-blue-50 border border-blue-200 rounded-lg p-8 text-center card-elevated">
         <h3 className="text-2xl font-bold mb-4">Not Sure Which Course to Choose?</h3>
         <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
           Our team is here to help you select the right training program for your career goals. Contact us for personalized guidance.
         </p>
         <Link href="/contact">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+          <Button size="lg" className="btn-vibrant">
             Contact Us for Guidance
           </Button>
         </Link>

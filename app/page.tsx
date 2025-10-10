@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ArrowRight, Shield, Clock, Award, Users, CircleCheck as CheckCircle, Star } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, Shield, Clock, Award, Users, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -46,66 +47,59 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-24 lg:py-32">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-primary/75 text-white py-24 lg:py-32">
+        <div className="absolute inset-0">
+          <Image
+            src="/securityGuard.jpg"
+            alt="Professional security guards"
+            layout="fill"
+            objectFit="cover"
+            className="opacity-20 object-top"
+          />
+        </div>
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30">
               PSIRA Accredited Training Provider
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Fast-Track Your Security Career with MH Makgopolo
+              Fast-Track Your PSIRA Security Career
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Get certified and job-ready faster than competitors. Professional security training with rapid certification processing.
+              Get certified and job-ready faster. Professional security training with rapid certification processing.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/courses">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                <Button size="lg" className="btn-vibrant">
                   View Our Courses
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="text-primary border-white hover:bg-white/10">
                   Contact Us
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+
       </section>
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-8 w-8" />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Fast-Tracked Processing</h3>
-              <p className="text-gray-600">Get certified faster with our streamlined administration and rapid processing.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+            <div>
+              <p className="text-4xl font-bold text-blue-600">500+</p>
+              <p className="text-lg text-gray-700">Successful Graduates</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Award className="h-8 w-8" />
-              </div>
-              <h3 className="font-bold text-xl mb-2">PSIRA Accredited</h3>
-              <p className="text-gray-600">Fully accredited training provider with recognized certifications.</p>
+            <div>
+              <p className="text-4xl font-bold text-blue-600">95%</p>
+              <p className="text-lg text-gray-700">Employment Rate</p>
             </div>
-            <div className="text-center">
-              <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8" />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Expert Instructors</h3>
-              <p className="text-gray-600">Learn from experienced security professionals with real-world expertise.</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="h-8 w-8" />
-              </div>
-              <h3 className="font-bold text-xl mb-2">Job-Ready Training</h3>
-              <p className="text-gray-600">Practical skills training that prepares you for immediate employment.</p>
+            <div>
+              <p className="text-4xl font-bold text-blue-600">10+</p>
+              <p className="text-lg text-gray-700">Years of Experience</p>
             </div>
           </div>
         </div>
@@ -122,7 +116,7 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {courses.map((course) => (
-              <Card key={course.id} className="hover:shadow-lg transition-shadow">
+              <Card key={course.id} className="card-elevated hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <Badge className="w-fit mb-2">{course.grade_level}</Badge>
                   <CardTitle className="text-xl">{course.title}</CardTitle>
@@ -152,7 +146,7 @@ export default async function Home() {
 
           <div className="text-center mt-10">
             <Link href="/courses">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" className="btn-vibrant">
                 View All Courses
               </Button>
             </Link>
@@ -169,22 +163,22 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white p-6 rounded-lg card-elevated">
               <Shield className="h-12 w-12 text-blue-600 mb-4" />
               <h3 className="font-bold text-xl mb-2">Trusted & Legitimate</h3>
               <p className="text-gray-600">
                 Fully accredited by PSIRA with a proven track record of producing qualified security professionals.
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg card-elevated">
               <Clock className="h-12 w-12 text-blue-600 mb-4" />
               <h3 className="font-bold text-xl mb-2">Rapid Certification</h3>
               <p className="text-gray-600">
                 Streamlined course scheduling and fast certification processing minimize wait times significantly.
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg card-elevated">
               <Users className="h-12 w-12 text-blue-600 mb-4" />
               <h3 className="font-bold text-xl mb-2">Industry Connections</h3>
               <p className="text-gray-600">
@@ -207,7 +201,7 @@ export default async function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {testimonials.map((testimonial) => (
-                <Card key={testimonial.id}>
+                <Card key={testimonial.id} className="card-elevated">
                   <CardHeader>
                     <div className="flex items-center space-x-4 mb-2">
                       <div className="bg-blue-100 text-blue-600 rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">
@@ -247,22 +241,22 @@ export default async function Home() {
         </section>
       )}
 
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Security Career?</h2>
           <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
             Join hundreds of successful graduates who have launched their careers with MH Makgopolo Security Training.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+            <Link href="/registration">
+              <Button size="lg" className="btn-vibrant">
                 Enroll Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link href="/registration">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                View Registration Process
+            <Link href="/courses">
+              <Button size="lg" variant="outline" className="border-white text-primary hover:bg-white/10">
+                View Courses
               </Button>
             </Link>
           </div>

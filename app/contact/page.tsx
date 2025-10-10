@@ -65,7 +65,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <Card>
+          <Card className="card-elevated">
             <CardHeader>
               <Phone className="h-8 w-8 text-blue-600 mb-2" />
               <CardTitle>Phone</CardTitle>
@@ -78,7 +78,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-elevated">
             <CardHeader>
               <Mail className="h-8 w-8 text-blue-600 mb-2" />
               <CardTitle>Email</CardTitle>
@@ -91,7 +91,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-elevated">
             <CardHeader>
               <MapPin className="h-8 w-8 text-blue-600 mb-2" />
               <CardTitle>Location</CardTitle>
@@ -105,7 +105,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <Card>
+            <Card className="card-elevated">
               <CardHeader>
                 <CardTitle>Send Us a Message</CardTitle>
                 <CardDescription>
@@ -179,7 +179,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <Button type="submit" className="w-full btn-vibrant" disabled={isSubmitting}>
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                     <Send className="ml-2 h-4 w-4" />
                   </Button>
@@ -189,7 +189,7 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-6">
-            <Card>
+            <Card className="card-elevated">
               <CardHeader>
                 <Clock className="h-8 w-8 text-blue-600 mb-2" />
                 <CardTitle>Business Hours</CardTitle>
@@ -210,7 +210,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-green-50 border-green-200">
+            <Card className="bg-green-50 border-green-200 card-elevated">
               <CardHeader>
                 <CardTitle>WhatsApp Us</CardTitle>
                 <CardDescription>Get instant responses via WhatsApp</CardDescription>
@@ -231,7 +231,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-blue-50 border-blue-200">
+            <Card className="bg-blue-50 border-blue-200 card-elevated">
               <CardHeader>
                 <CardTitle>Ready to Enroll?</CardTitle>
               </CardHeader>

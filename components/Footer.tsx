@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Shield, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import Image from 'next/image';
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Shield className="h-8 w-8 text-blue-500" />
+              <Image src='/logo.png' alt='MH Makgopolo Logo' width={32} height={32} />
               <div className="flex flex-col">
                 <span className="font-bold text-lg text-white">MH Makgopolo</span>
                 <span className="text-xs">Security Training</span>
@@ -19,7 +20,10 @@ export default function Footer() {
             <p className="text-sm mb-4">
               Providing specialized security training and certification programs. Equipping individuals with the skills to excel in the private security industry.
             </p>
-            <div className="flex space-x-4">
+            <div className="mt-4">
+              <p className="text-sm font-semibold text-white">PSIRA Accredited</p>
+            </div>
+            <div className="flex space-x-4 mt-4">
               <a href="#" className="hover:text-blue-500 transition-colors" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
@@ -87,6 +91,16 @@ export default function Footer() {
               <li>
                 <Link href="/courses/goals-guarding-grade-c" className="hover:text-blue-500 transition-colors">
                   Goals Guarding Grade C
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/goals-guarding-grade-b" className="hover:text-blue-500 transition-colors">
+                  Goals Guarding Grade B
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/goals-guarding-grade-a" className="hover:text-blue-500 transition-colors">
+                  Goals Guarding Grade A
                 </Link>
               </li>
               <li>

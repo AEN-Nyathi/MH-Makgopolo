@@ -75,8 +75,9 @@ export default function GalleryPage() {
             ) : filterImages(cat.value).length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filterImages(cat.value).map((image) => (
-                  <Card key={image.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  <Card key={image.id} className="overflow-hidden card-elevated hover:shadow-lg transition-shadow">
                     <div className="relative h-64 bg-gray-200">
+                       {/* [Image Placeholder: Security training graduation ceremony with smiling students and trainers.] */}
                       <Image
                         src={image.image_url}
                         alt={image.title}

@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { Menu, X, Shield, Phone } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Header() {
@@ -36,7 +37,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center space-x-2">
-            <Shield className="h-10 w-10 text-blue-600" />
+            <Image src='/logo.png' alt='MH Makgopolo Logo' width={40} height={40} />
             <div className="flex flex-col">
               <span className="font-bold text-xl text-gray-900">MH Makgopolo</span>
               <span className="text-xs text-gray-600">Security Training</span>
@@ -60,10 +61,8 @@ export default function Header() {
               <Phone className="h-4 w-4 mr-2" />
               <span className="font-medium">Call Us</span>
             </a>
-            <Link href="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700">
-                Enroll Now
-              </Button>
+            <Link href="/registration">
+              <Button className="btn-vibrant">Register</Button>
             </Link>
           </div>
 
@@ -97,9 +96,9 @@ export default function Header() {
                   <Phone className="h-4 w-4 mr-2" />
                   <span className="font-medium">Call Us</span>
                 </a>
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                    Enroll Now
+                <Link href="/registration" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button className="w-full btn-vibrant">
+                    Register
                   </Button>
                 </Link>
               </div>

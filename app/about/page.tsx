@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Shield, Target, Award, Users, Clock, TrendingUp, CircleCheck as CheckCircle, ArrowRight } from 'lucide-react';
+import { Shield, Target, Award, Users, Clock, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -41,7 +41,7 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col">
-      <section className="bg-gradient-to-br from-blue-600 to-blue-900 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-800 to-blue-900 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">About MH Makgopolo</h1>
@@ -69,7 +69,8 @@ export default function AboutPage() {
                 </p>
               </div>
               <div>
-                <Card className="bg-blue-50 border-blue-200">
+                {/* [Image Placeholder: Engagement/Learning. A focused classroom scene with an instructor teaching security protocols.] */}
+                <Card className="bg-blue-50 border-blue-200 card-elevated">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Target className="h-6 w-6 text-blue-600 mr-2" />
@@ -82,19 +83,6 @@ export default function AboutPage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card className="bg-green-50 border-green-200 mt-6">
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Shield className="h-6 w-6 text-green-600 mr-2" />
-                      Our Vision
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700">
-                      To be South Africa's leading security training provider known for excellence, efficiency, and employment outcomes.
-                    </p>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>
@@ -104,14 +92,14 @@ export default function AboutPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Values</h2>
+            <h2 className="text-3xl font-bold mb-4">Our Core Values</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do at MH Makgopolo.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {values.map((value) => (
-              <Card key={value.title} className="text-center">
+              <Card key={value.title} className="text-center card-elevated">
                 <CardContent className="pt-6">
                   <value.icon className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-bold text-xl mb-2">{value.title}</h3>
@@ -133,7 +121,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {achievements.map((achievement) => (
-              <div key={achievement.label} className="text-center">
+              <div key={achievement.label} className="text-center p-4 rounded-lg card-elevated">
                 <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
                   {achievement.number}
                 </div>
@@ -148,7 +136,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Accreditations & Certifications</h2>
-            <Card>
+            <Card className="card-elevated">
               <CardContent className="pt-6">
                 <div className="space-y-4">
                   <div className="flex items-start">
@@ -169,15 +157,6 @@ export default function AboutPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-6 w-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-bold text-lg mb-1">Industry Partnerships</h3>
-                      <p className="text-gray-600">
-                        Collaborating with leading security companies to ensure our training meets current industry needs.
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -185,56 +164,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">What Makes Us Different</h2>
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Clock className="h-6 w-6 text-blue-600 mr-2" />
-                    Fast-Tracked Processing
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700">
-                    Our streamlined administration and efficient course scheduling mean you get certified faster. We understand that every day counts when you're trying to start your career.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Users className="h-6 w-6 text-blue-600 mr-2" />
-                    Industry Connections
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700">
-                    We've built strong relationships with security companies actively hiring. Many of our graduates receive job offers shortly after certification.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Award className="h-6 w-6 text-blue-600 mr-2" />
-                    Quality Training
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700">
-                    Speed doesn't mean compromising on quality. Our courses meet all PSIRA requirements and our instructors bring real-world security experience.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Journey?</h2>
           <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
@@ -242,13 +172,13 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/courses">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+              <Button size="lg" className="btn-vibrant">
                 View Our Courses
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-white text-primary hover:bg-white/10">
                 Contact Us
               </Button>
             </Link>

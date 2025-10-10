@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Clock, DollarSign, Award, Briefcase, CircleCheck as CheckCircle, ArrowRight } from 'lucide-react';
+import { Clock, DollarSign, Award, Briefcase, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -69,8 +69,9 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
           <p className="text-xl text-gray-600">{course.short_description}</p>
         </div>
 
+        {/* [Image Placeholder: Action-oriented. A security professional in a real-world scenario relevant to the course.] */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card>
+          <Card className="card-elevated">
             <CardHeader className="pb-3">
               <Clock className="h-8 w-8 text-blue-600 mb-2" />
               <CardTitle className="text-lg">Duration</CardTitle>
@@ -80,7 +81,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-elevated">
             <CardHeader className="pb-3">
               <DollarSign className="h-8 w-8 text-blue-600 mb-2" />
               <CardTitle className="text-lg">Investment</CardTitle>
@@ -90,7 +91,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-elevated">
             <CardHeader className="pb-3">
               <Award className="h-8 w-8 text-blue-600 mb-2" />
               <CardTitle className="text-lg">Level</CardTitle>
@@ -101,21 +102,21 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
           </Card>
         </div>
 
-        <div className="bg-blue-600 text-white rounded-lg p-8 mb-8 text-center">
+        <div className="bg-blue-700 text-white rounded-lg p-8 mb-8 text-center card-elevated">
           <h2 className="text-2xl font-bold mb-4">Ready to Get Certified?</h2>
           <p className="mb-6 text-blue-100">
             Fast-tracked processing means you'll be job-ready sooner than you think.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+            <Link href="/registration">
+              <Button size="lg" className="btn-vibrant">
                 Enroll Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link href="/registration">
+            <Link href="/contact">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                View Registration Process
+                Ask a Question
               </Button>
             </Link>
           </div>
@@ -130,7 +131,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
           {course.requirements && (
             <div>
               <h2 className="text-2xl font-bold mb-4">Requirements</h2>
-              <Card>
+              <Card className="card-elevated">
                 <CardContent className="pt-6">
                   <ul className="space-y-2">
                     {course.requirements.split(',').map((req: string, index: number) => (
@@ -148,7 +149,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
           {course.certification && (
             <div>
               <h2 className="text-2xl font-bold mb-4">Certification</h2>
-              <Card className="bg-blue-50 border-blue-200">
+              <Card className="bg-blue-50 border-blue-200 card-elevated">
                 <CardContent className="pt-6">
                   <div className="flex items-start">
                     <Award className="h-6 w-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
@@ -162,7 +163,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
           {course.job_prospects && (
             <div>
               <h2 className="text-2xl font-bold mb-4">Career Opportunities</h2>
-              <Card className="bg-green-50 border-green-200">
+              <Card className="bg-green-50 border-green-200 card-elevated">
                 <CardContent className="pt-6">
                   <div className="flex items-start">
                     <Briefcase className="h-6 w-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
@@ -176,7 +177,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
 
         <Separator className="my-12" />
 
-        <div className="bg-gray-50 rounded-lg p-8">
+        <div className="bg-gray-50 rounded-lg p-8 card-elevated">
           <h3 className="text-xl font-bold mb-4">Why Choose MH Makgopolo?</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-start">
