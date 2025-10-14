@@ -1,5 +1,8 @@
+'use server'
+
 import { NextResponse } from "next/server";
-import { supabase } from '@/lib/supabase';
+import { db } from "@/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export async function POST(request: Request) {
   try {
@@ -13,27 +16,18 @@ export async function POST(request: Request) {
       );
     }
 
-    const { error } = await supabase
-      .from('contact_submissions')
-      .insert([
-        {
-          full_name,
-          email,
-          phone,
-          course_interest: course_interest || null,
-          message,
-          source: 'Website Contact Form',
-          status: 'new',
-        },
-      ]);
+    const submission = {
+      full_name,
+      email,
+      phone,
+      course_interest: course_interest || null,
+      message,
+      source: 'Website Contact Form',
+      status: 'new',
+      created_at: serverTimestamp(),
+    };
 
-    if (error) {
-      console.error('Supabase error:', error);
-      return NextResponse.json(
-        { error: 'Failed to save submission' },
-        { status: 500 }
-      );
-    }
+    await addDoc(collection(db, 'contact_submissions'), submission);
 
     return NextResponse.json(
       { success: true, message: 'Contact form submitted successfully' },

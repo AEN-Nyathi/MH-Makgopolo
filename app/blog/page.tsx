@@ -1,34 +1,33 @@
+'use client'
+
 import Link from 'next/link';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { supabase } from '@/lib/supabase';
+import { useEffect, useState } from 'react';
+import { BlogPost } from '@/lib/types';
+import { db } from '@/firebase';
+import { getBlogPosts } from '@/lib/data';
 
-async function getBlogPosts() {
-  const { data, error } = await supabase
-    .from('blog_posts')
-    .select('*')
-    .eq('is_published', true)
-    .order('published_at', { ascending: false });
+export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  if (error) {
-    console.error('Error fetching blog posts:', error);
-    return [];
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const allPosts = await getBlogPosts(db);
+      const publishedPosts = allPosts.filter(post => post.is_published).sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+      setPosts(publishedPosts);
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Or a proper skeleton loader
   }
-
-  return data || [];
-}
-
-export const revalidate = 3600;
-
-export const metadata = {
-  title: 'Security Training Blog | MH Makgopolo',
-  description: 'Read the latest news, insights, and tips about security training, career development, and industry trends.',
-};
-
-export default async function BlogPage() {
-  const posts = await getBlogPosts();
 
   return (
     <div className="container mx-auto px-4 py-12">

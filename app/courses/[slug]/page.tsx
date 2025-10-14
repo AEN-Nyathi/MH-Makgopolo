@@ -5,33 +5,34 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { Course } from '@/lib/types';
 
-async function getCourseBySlug(slug: string) {
-  const { data, error } = await supabase
-    .from('courses')
-    .select('*')
-    .eq('slug', slug)
-    .eq('is_active', true)
-    .maybeSingle();
+async function getCourseBySlug(slug: string): Promise<Course | null> {
+  const coursesCol = collection(db, 'courses');
+  const q = query(coursesCol, where('slug', '==', slug), where('is_active', '==', true));
 
-  if (error) {
+  try {
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      return null;
+    }
+    const course = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() } as Course;
+    return course;
+  } catch (error) {
     console.error('Error fetching course:', error);
     return null;
   }
-
-  return data;
 }
 
 export async function generateStaticParams() {
-  const { data: courses } = await supabase
-    .from('courses')
-    .select('slug')
-    .eq('is_active', true);
+  const coursesCol = collection(db, 'courses');
+  const q = query(coursesCol, where('is_active', '==', true));
+  const querySnapshot = await getDocs(q);
 
-  return courses?.map((course) => ({
-    slug: course.slug,
-  })) || [];
+  const courses = querySnapshot.docs.map(doc => ({ slug: doc.data().slug }));
+  return courses;
 }
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
@@ -49,8 +50,6 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     description: course.short_description,
   };
 }
-
-export const revalidate = 3600;
 
 export default async function CourseDetailPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
@@ -97,7 +96,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
               <CardTitle className="text-lg">Level</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold">Grade {course.grade_level}</p>
+              <p className="text-2xl font-bold">{course.grade_level}</p>
             </CardContent>
           </Card>
         </div>
@@ -115,7 +114,7 @@ export default async function CourseDetailPage(props: { params: Promise<{ slug: 
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-white text-primary hover:bg-white/10">
                 Ask a Question
               </Button>
             </Link>

@@ -1,34 +1,40 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import { Toaster } from '@/components/ui/toaster';
+'use client'
 
-const inter = Inter({ subsets: ['latin'] });
+import { Toaster } from "@/components/toaster"
+import { ThemeProvider } from "next-themes"
+import { Inter as FontSans } from "next/font/google"
+import "./globals.css"
+import { cn } from "@/lib/utils"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
+ 
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
-export const metadata: Metadata = {
-  title: 'MH Makgopolo Security Training | Professional Security Certification Courses',
-  description: 'Leading security training provider in South Africa. Fast-tracked PSIRA certification for Goals Guarding, Firearm Competency, and First Aid. Get job-ready faster.',
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: {children: React.ReactNode}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <main className="min-h-screen pt-20">
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
           {children}
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <Toaster />
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

@@ -4,42 +4,38 @@ import { ArrowRight, Shield, Clock, Award, Users, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { supabase } from '@/lib/supabase';
+import { db } from '@/firebase';
+import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 
 async function getFeaturedCourses() {
-  const { data, error } = await supabase
-    .from('courses')
-    .select('*')
-    .eq('is_featured', true)
-    .eq('is_active', true)
-    .order('order_index')
-    .limit(4);
+  const coursesCol = collection(db, 'courses');
+  const q = query(coursesCol, where('is_featured', '==', true), where('is_active', '==', true), limit(4));
 
-  if (error) {
+  try {
+    const querySnapshot = await getDocs(q);
+    const courses = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return courses;
+  } catch (error) {
     console.error('Error fetching courses:', error);
+    // If you see this error, it's likely because you need to create a composite index in Firestore.
+    // Check your browser's developer console for a link to create it.
     return [];
   }
-
-  return data || [];
 }
 
 async function getFeaturedTestimonials() {
-  const { data, error } = await supabase
-    .from('testimonials')
-    .select('*')
-    .eq('is_featured', true)
-    .eq('is_approved', true)
-    .limit(3);
+  const testimonialsCol = collection(db, 'testimonials');
+  const q = query(testimonialsCol, where('is_featured', '==', true), where('is_approved', '==', true), limit(3));
 
-  if (error) {
+  try {
+    const querySnapshot = await getDocs(q);
+    const testimonials = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return testimonials;
+  } catch (error) {
     console.error('Error fetching testimonials:', error);
     return [];
   }
-
-  return data || [];
 }
-
-export const revalidate = 3600;
 
 export default async function Home() {
   const courses = await getFeaturedCourses();
@@ -115,33 +111,41 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {courses.map((course) => (
-              <Card key={course.id} className="card-elevated hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <Badge className="w-fit mb-2">{course.grade_level}</Badge>
-                  <CardTitle className="text-xl">{course.title}</CardTitle>
-                  <CardDescription>{course.short_description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 mb-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Duration:</span>
-                      <span className="font-semibold">{course.duration}</span>
+            {courses.length > 0 ? (
+              courses.map((course: any) => (
+                <Card key={course.id} className="card-elevated hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Badge className="w-fit mb-2">{course.grade_level}</Badge>
+                    <CardTitle className="text-xl">{course.title}</CardTitle>
+                    <CardDescription>{course.short_description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3 mb-4">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Duration:</span>
+                        <span className="font-semibold">{course.duration}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600">Price:</span>
+                        <span className="font-bold text-blue-600">R{course.price.toLocaleString()}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Price:</span>
-                      <span className="font-bold text-blue-600">R{course.price.toLocaleString()}</span>
-                    </div>
-                  </div>
-                  <Link href={`/courses/${course.slug}`}>
-                    <Button className="w-full" variant="outline">
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                    <Link href={`/courses/${course.slug}`}>
+                      <Button className="w-full" variant="outline">
+                        Learn More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-600 text-lg">
+                  No featured courses are available at the moment. Please check back later.
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="text-center mt-10">
@@ -200,7 +204,7 @@ export default async function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {testimonials.map((testimonial) => (
+              {testimonials.map((testimonial: any) => (
                 <Card key={testimonial.id} className="card-elevated">
                   <CardHeader>
                     <div className="flex items-center space-x-4 mb-2">

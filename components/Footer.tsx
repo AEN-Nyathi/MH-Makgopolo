@@ -1,163 +1,107 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/input';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const socialLinks = [
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
+  ];
+
+  const quickLinks = [
+    { label: 'About Us', href: '/about' },
+    { label: 'Courses', href: '/courses' },
+    { label: 'Testimonials', href: '/testimonials' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'Privacy Policy', href: '/privacy' },
+  ];
+
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <Image src='/logo.png' alt='MH Makgopolo Logo' width={32} height={32} />
+    <footer className="bg-gray-900 text-white pt-16 pb-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Logo and About */}
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center space-x-3">
+              <Image src='/logo-white.png' alt='MH Makgopolo Logo' width={50} height={50} />
               <div className="flex flex-col">
-                <span className="font-bold text-lg text-white">MH Makgopolo</span>
-                <span className="text-xs">Security Training</span>
+                <span className="font-bold text-xl">MH Makgopolo</span>
+                <span className="text-xs text-gray-400">Security Training</span>
               </div>
-            </div>
-            <p className="text-sm mb-4">
-              Providing specialized security training and certification programs. Equipping individuals with the skills to excel in the private security industry.
+            </Link>
+            <p className="text-gray-400 text-sm">
+              Your trusted partner in professional security training and rapid certification.
             </p>
-            <div className="mt-4">
-              <p className="text-sm font-semibold text-white">PSIRA Accredited</p>
-            </div>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="hover:text-blue-500 transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-blue-500 transition-colors" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-blue-500 transition-colors" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-blue-500 transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="hover:text-blue-500 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="hover:text-blue-500 transition-colors">
-                  Our Courses
-                </Link>
-              </li>
-              <li>
-                <Link href="/registration" className="hover:text-blue-500 transition-colors">
-                  Registration Process
-                </Link>
-              </li>
-              <li>
-                <Link href="/testimonials" className="hover:text-blue-500 transition-colors">
-                  Success Stories
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery" className="hover:text-blue-500 transition-colors">
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-blue-500 transition-colors">
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">Our Courses</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/courses/goals-guarding-grade-e" className="hover:text-blue-500 transition-colors">
-                  Goals Guarding Grade E
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses/goals-guarding-grade-d" className="hover:text-blue-500 transition-colors">
-                  Goals Guarding Grade D
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses/goals-guarding-grade-c" className="hover:text-blue-500 transition-colors">
-                  Goals Guarding Grade C
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses/goals-guarding-grade-b" className="hover:text-blue-500 transition-colors">
-                  Goals Guarding Grade B
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses/goals-guarding-grade-a" className="hover:text-blue-500 transition-colors">
-                  Goals Guarding Grade A
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses/firearm-competency" className="hover:text-blue-500 transition-colors">
-                  Firearm Competency
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses/first-aid-level-1" className="hover:text-blue-500 transition-colors">
-                  First Aid Level 1
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">lulekani, Phalabowra, limpopo South Africa</span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="h-5 w-5 mr-2 flex-shrink-0" />
-                <a href="tel:+27665664326" className="text-sm hover:text-blue-500 transition-colors">
- +276 656 64326
+            <div className="flex space-x-4 pt-2">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-6 w-6" />
                 </a>
-              </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 mr-2 flex-shrink-0" />
-                <a href="mailto:info@mhmakgopolo.co.za" className="text-sm hover:text-blue-500 transition-colors">
-                  info@mhmakgopolo.co.za
-                </a>
-              </li>
-            </ul>
-            <div className="mt-6">
-              <h4 className="text-white font-semibold mb-2">Accreditations</h4>
-              <p className="text-xs">PSIRA Registered Training Provider</p>
-              <p className="text-xs">Accredited Security Training Academy</p>
+              ))}
             </div>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-lg mb-2">Get in Touch</h3>
+            <div className="flex items-start space-x-3 text-sm">
+              <MapPin className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
+              <p className="text-gray-400">123 Security Lane, Pretoria, Gauteng, 0002, South Africa</p>
+            </div>
+            <div className="flex items-center space-x-3 text-sm">
+              <Phone className="h-5 w-5 text-blue-400" />
+              <a href="tel:+27123456789" className="text-gray-400 hover:text-white">+27 12 345 6789</a>
+            </div>
+            <div className="flex items-center space-x-3 text-sm">
+              <Mail className="h-5 w-5 text-blue-400" />
+              <a href="mailto:info@makgopolosecurity.co.za" className="text-gray-400 hover:text-white">info@makgopolosecurity.co.za</a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-lg mb-2">Quick Links</h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-gray-400 text-sm hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-lg mb-2">Newsletter</h3>
+            <p className="text-gray-400 text-sm">Stay updated with our latest courses and news.</p>
+            <form className="flex flex-col sm:flex-row gap-2">
+              <Input type="email" placeholder="Your Email" className="bg-gray-800 border-gray-700 text-white" />
+              <Button type="submit" className="btn-vibrant">Subscribe</Button>
+            </form>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-center md:text-left">
-              &copy; {currentYear} MH Makgopolo Security Training. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="/privacy" className="text-sm hover:text-blue-500 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-sm hover:text-blue-500 transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+        <div className="border-t border-gray-800 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+          <p className="text-gray-500 text-sm mb-4 md:mb-0">
+            &copy; {currentYear} MH Makgopolo (Pty) Ltd. All rights reserved.
+          </p>
+          <p className="text-gray-500 text-sm">
+            PSIRA Accreditation No: 123456
+          </p>
         </div>
       </div>
     </footer>
