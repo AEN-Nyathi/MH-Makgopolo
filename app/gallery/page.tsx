@@ -5,7 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { GalleryImage } from '@/lib/types';
 import { db } from '@/firebase';
 import { getGalleryImages } from '@/lib/data';
-import { Skeleton } from '@/components/ui/skeleton';
 
 export default async function GalleryPage() {
   const allImages = await getGalleryImages(db);

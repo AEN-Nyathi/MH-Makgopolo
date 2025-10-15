@@ -17,7 +17,9 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       const allPosts = await getBlogPosts(db);
-      const publishedPosts = allPosts.filter(post => post.is_published).sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+      const publishedPosts = allPosts
+        .filter(post => post.is_published)
+        .sort((a, b) => new Date(b.published_at || 0).getTime() - new Date(a.published_at || 0).getTime());
       setPosts(publishedPosts);
       setLoading(false);
     };
@@ -48,7 +50,7 @@ export default function BlogPage() {
                     <Badge>{post.category}</Badge>
                     <div className="flex items-center text-xs text-gray-500">
                       <Calendar className="h-3 w-3 mr-1" />
-                      {new Date(post.published_at).toLocaleDateString()}
+                      {post.published_at ? new Date(post.published_at).toLocaleDateString() : ''}
                     </div>
                   </div>
                   <CardTitle className="text-xl line-clamp-2">{post.title}</CardTitle>
