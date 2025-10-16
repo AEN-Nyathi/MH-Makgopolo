@@ -1,35 +1,18 @@
-'use client'
 
 import Link from 'next/link';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useEffect, useState } from 'react';
 import { BlogPost } from '@/lib/types';
 import { db } from '@/firebase';
 import { getBlogPosts } from '@/lib/data';
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const allPosts = await getBlogPosts(db);
-      const publishedPosts = allPosts
-        .filter(post => post.is_published)
-        .sort((a, b) => new Date(b.published_at || 0).getTime() - new Date(a.published_at || 0).getTime());
-      setPosts(publishedPosts);
-      setLoading(false);
-    };
-
-    fetchPosts();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>; // Or a proper skeleton loader
-  }
+export default async function BlogPage() {
+  const allPosts = await getBlogPosts(db);
+  const posts = allPosts
+    .filter(post => post.is_published)
+    .sort((a, b) => new Date(b.published_at || 0).getTime() - new Date(a.published_at || 0).getTime());
 
   return (
     <div className="container mx-auto px-4 py-12">

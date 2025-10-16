@@ -1,6 +1,6 @@
 'use client'
 
-import { Toaster } from "@/components/toaster"
+import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "next-themes"
 import { Inter as FontSans } from "next/font/google"
 import "./globals.css"

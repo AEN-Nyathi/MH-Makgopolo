@@ -3,6 +3,7 @@ import { CircleCheck as CheckCircle, FileText, CreditCard, Award, ArrowRight, Ci
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import RegistrationForm from '@/components/RegistrationForm';
 
 export const metadata = {
   title: 'Registration Process | MH Makgopolo',
@@ -23,9 +24,7 @@ export default function RegistrationPage() {
       number: 2,
       icon: FileText,
       title: 'Submit Application',
-      description: 'Contact us to submit your application. We\'ll verify your documents and confirm your eligibility.',
-      action: 'Contact Us',
-      actionLink: '/contact',
+      description: 'Fill out the registration form below. We\'ll verify your documents and confirm your eligibility.',
     },
     {
       number: 3,
@@ -57,11 +56,26 @@ export default function RegistrationPage() {
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Registration Process</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Online Registration</h1>
           <p className="text-xl text-gray-600">
             Our streamlined registration process gets you from application to certification faster than competitors.
           </p>
         </div>
+
+        <Card className="mb-12">
+            <CardHeader>
+                <CardTitle className="text-2xl">Submit Your Application</CardTitle>
+                <CardDescription>Fill out the form below to get started.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <RegistrationForm />
+            </CardContent>
+        </Card>
+
+        <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Registration Process</h2>
+        </div>
+
 
         <Alert className="mb-8">
           <AlertCircle className="h-4 w-4" />
@@ -162,30 +176,6 @@ export default function RegistrationPage() {
               </a>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="bg-blue-600 text-white rounded-lg p-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-xl mb-6 text-blue-100">
-            Contact us today to begin your registration or ask any questions about the process.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-                Start Registration
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <a
-              href="https://wa.me/27123456789?text=Hi! I'd like to register for a course."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                WhatsApp Us
-              </Button>
-            </a>
-          </div>
         </div>
       </div>
     </div>
