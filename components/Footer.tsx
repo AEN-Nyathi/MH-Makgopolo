@@ -20,7 +20,7 @@ export default function Footer() {
     { label: 'Testimonials', href: '/testimonials' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'galleries', href: '/gallery' },
   ];
 
   return (
