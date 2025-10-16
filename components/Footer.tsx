@@ -30,7 +30,7 @@ export default function Footer() {
           {/* Logo and About */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src='/logo-white.png' alt='MH Makgopolo Logo' width={50} height={50} />
+              <Image src='/logo.png' alt='MH Makgopolo Logo' width={50} height={50} />
               <div className="flex flex-col">
                 <span className="font-bold text-xl">MH Makgopolo</span>
                 <span className="text-xs text-gray-400">Security Training</span>
