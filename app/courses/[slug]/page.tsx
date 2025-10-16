@@ -35,9 +35,9 @@ export async function generateStaticParams() {
   return courses;
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params;
-  const course = await getCourseBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const course = await getCourseBySlug(slug);
 
   if (!course) {
     return {
@@ -51,9 +51,9 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   };
 }
 
-export default async function CourseDetailPage(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params;
-  const course = await getCourseBySlug(params.slug);
+export default async function CourseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const course = await getCourseBySlug(slug);
 
   if (!course) {
     notFound();
