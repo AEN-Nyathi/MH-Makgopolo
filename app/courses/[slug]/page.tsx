@@ -7,24 +7,9 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { db } from '@/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { Course } from '@/lib/types';
+import { getCourseBySlug } from '@/lib/data';
 
-async function getCourseBySlug(slug: string): Promise<Course | null> {
-  const coursesCol = collection(db, 'courses');
-  const q = query(coursesCol, where('slug', '==', slug), where('is_active', '==', true));
 
-  try {
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-      return null;
-    }
-    const course = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() } as Course;
-    return course;
-  } catch (error) {
-    console.error('Error fetching course:', error);
-    return null;
-  }
-}
 
 export async function generateStaticParams() {
   const coursesCol = collection(db, 'courses');

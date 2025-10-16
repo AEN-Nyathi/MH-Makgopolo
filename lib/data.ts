@@ -1,5 +1,6 @@
 import { Firestore, collection, getDocs, query, where } from 'firebase/firestore';
 import { Course, BlogPost, Testimonial, GalleryImage } from './types';
+import { db } from '@/firebase';
 
 // Generic function to fetch data from a collection
 async function fetchCollection<T>(db: Firestore, collectionName: string): Promise<T[]> {
@@ -9,9 +10,37 @@ async function fetchCollection<T>(db: Firestore, collectionName: string): Promis
 }
 
 // Fetch all courses
-export const getCourses = (db: Firestore): Promise<Course[]> => {
-  return fetchCollection<Course>(db, 'courses');
-};
+export  async function getAllCourses(): Promise<Course[]> {
+  const coursesCol = collection(db, 'courses');
+  const q = query(coursesCol, where('is_active', '==', true));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Course));
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    // This error likely means you need to create a new composite index in Firestore.
+    // Please check your server's terminal output for a link to create the index.
+    return [];
+  }
+}
+
+export async function getCourseBySlug(slug: string): Promise<Course | null> {
+  const coursesCol = collection(db, 'courses');
+  const q = query(coursesCol, where('slug', '==', slug), where('is_active', '==', true));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      return null;
+    }
+    const course = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() } as Course;
+    return course;
+  } catch (error) {
+    console.error('Error fetching course:', error);
+    return null;
+  }
+}
 
 // Fetch all blog posts
 export const getBlogPosts = (db: Firestore): Promise<BlogPost[]> => {

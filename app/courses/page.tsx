@@ -3,37 +3,8 @@ import { ArrowRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { db } from '@/firebase';
-import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
+import { getAllCourses } from '@/lib/data';
 
-// Define the Course type for better type-safety
-interface Course {
-  id: string;
-  slug: string;
-  title: string;
-  grade_level: string;
-  short_description: string;
-  duration: string;
-  price: number;
-  certification: string;
-  is_active: boolean;
-  order_index: number;
-}
-
-async function getAllCourses(): Promise<Course[]> {
-  const coursesCol = collection(db, 'courses');
-  const q = query(coursesCol, where('is_active', '==', true));
-
-  try {
-    const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Course));
-  } catch (error) {
-    console.error('Error fetching courses:', error);
-    // This error likely means you need to create a new composite index in Firestore.
-    // Please check your server's terminal output for a link to create the index.
-    return [];
-  }
-}
 
 export const revalidate = 3600; // Re-fetch data every hour
 

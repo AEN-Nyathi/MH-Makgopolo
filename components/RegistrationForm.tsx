@@ -20,6 +20,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CheckCircle } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Course } from "@/lib/types"
+import { getAllCourses } from "@/lib/data"
 
 const formSchema = z.object({
     fullName: z.string().min(2, {
@@ -37,6 +38,8 @@ const formSchema = z.object({
     course: z.string().min(1, "Please select a course."),
 })
 
+
+
 export default function RegistrationForm() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [courses, setCourses] = useState<Course[]>([]);
@@ -44,12 +47,8 @@ export default function RegistrationForm() {
     useEffect(() => {
         async function fetchCourses() {
             try {
-                const response = await fetch('/api/courses');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch courses');
-                }
-                const data = await response.json();
-                setCourses(data);
+                const response = await getAllCourses();
+                setCourses(response);
             } catch (error) {
                 console.error(error);
                 toast({
