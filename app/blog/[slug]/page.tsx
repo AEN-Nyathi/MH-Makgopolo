@@ -11,13 +11,6 @@ import { BlogPost } from '@/lib/types';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 
-// Define a type for the component props
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
-
 async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const postsCollection = collection(db, 'blog_posts');
   const q = query(postsCollection, where('slug', '==', slug), where('is_published', '==', true));
@@ -44,8 +37,7 @@ export async function generateStaticParams() {
     return posts.filter(post => post.slug);
 }
 
-// Use the PageProps type for generateMetadata
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getBlogPostBySlug(params.slug);
 
   if (!post) {
@@ -60,8 +52,7 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-// Use the PageProps type for the page component
-export default async function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = await getBlogPostBySlug(params.slug);
 
   if (!post) {
@@ -98,7 +89,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <Image
                 src={post.featured_image}
                 alt={post.title}
-                layout='fill'
+                fill={true}
                 objectFit='cover'
                 className="rounded-lg"
               />
