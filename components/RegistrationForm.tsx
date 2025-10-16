@@ -15,9 +15,11 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CheckCircle } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Course } from "@/lib/types"
 
 const formSchema = z.object({
     fullName: z.string().min(2, {
@@ -32,13 +34,34 @@ const formSchema = z.object({
     idNumber: z.string().length(13, {
         message: "South African ID number must be 13 digits.",
     }).regex(/^[0-9]{13}$/, "Please enter a valid ID number."),
-    course: z.string().min(1, {
-        message: "Please specify a course.",
-    }),
+    course: z.string().min(1, "Please select a course."),
 })
 
 export default function RegistrationForm() {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [courses, setCourses] = useState<Course[]>([]);
+
+    useEffect(() => {
+        async function fetchCourses() {
+            try {
+                const response = await fetch('/api/courses');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch courses');
+                }
+                const data = await response.json();
+                setCourses(data);
+            } catch (error) {
+                console.error(error);
+                toast({
+                    title: "Error",
+                    description: "Could not load courses. Please refresh the page.",
+                    variant: "destructive",
+                });
+            }
+        }
+
+        fetchCourses();
+    }, []);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -158,9 +181,20 @@ export default function RegistrationForm() {
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Course of Interest</FormLabel>
-                            <FormControl>
-                                <Input placeholder="e.g., Grade E Security Training" {...field} />
-                            </FormControl>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a course" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {courses.map((course) => (
+                                        <SelectItem key={course.id} value={course.title}>
+                                            {course.title}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                             <FormMessage />
                         </FormItem>
                     )}
