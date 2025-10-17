@@ -3,7 +3,7 @@ import { Course, BlogPost, Testimonial, GalleryImage } from './types';
 import { db } from '@/firebase';
 
 // Generic function to fetch data from a collection
-async function fetchCollection<T>(db: Firestore, collectionName: string): Promise<T[]> {
+async function fetchCollection<T>(collectionName: string): Promise<T[]> {
   const q = query(collection(db, collectionName));
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T));
@@ -43,16 +43,32 @@ export async function getCourseBySlug(slug: string): Promise<Course | null> {
 }
 
 // Fetch all blog posts
-export const getBlogPosts = (db: Firestore): Promise<BlogPost[]> => {
-  return fetchCollection<BlogPost>(db, 'blog_posts');
+export const getBlogPosts = (): Promise<BlogPost[]> => {
+  return fetchCollection<BlogPost>('blog_posts');
 };
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const postsCollection = collection(db, 'blog_posts');
+  const q = query(postsCollection, where('slug', '==', slug), where('is_published', '==', true));
 
+  try {
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      return null;
+    }
+    const post = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() } as BlogPost;
+
+    return post;
+  } catch (error) {
+    console.error('Error fetching blog post:', error);
+    return null;
+  }
+}
 // Fetch all testimonials
-export const getTestimonials = (db: Firestore): Promise<Testimonial[]> => {
-  return fetchCollection<Testimonial>(db, 'testimonials');
+export const getTestimonials = (): Promise<Testimonial[]> => {
+  return fetchCollection<Testimonial>('testimonials');
 };
 
 // Fetch all gallery images
-export const getGalleryImages = (db: Firestore): Promise<GalleryImage[]> => {
-  return fetchCollection<GalleryImage>(db, 'gallery_images');
+export const getGalleryImages = (): Promise<GalleryImage[]> => {
+  return fetchCollection<GalleryImage>('gallery_images');
 };

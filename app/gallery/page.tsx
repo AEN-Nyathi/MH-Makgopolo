@@ -2,12 +2,10 @@
 import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from '@/components/ui/card';
-import { GalleryImage } from '@/lib/types';
-import { db } from '@/firebase';
 import { getGalleryImages } from '@/lib/data';
 
 export default async function GalleryPage() {
-  const allImages = await getGalleryImages(db);
+  const allImages = await getGalleryImages();
   const images = allImages.filter(img => img.is_active).sort((a, b) => (a.order_index || 0) - (b.order_index || 0));
 
   const filterImages = (category: string) => {

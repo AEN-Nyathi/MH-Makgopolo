@@ -9,7 +9,7 @@ import { db } from '@/firebase';
 import { getBlogPosts } from '@/lib/data';
 
 export default async function BlogPage() {
-  const allPosts = await getBlogPosts(db);
+  const allPosts = await getBlogPosts();
   const posts = allPosts
     .filter(post => post.is_published)
     .sort((a, b) => new Date(b.published_at || 0).getTime() - new Date(a.published_at || 0).getTime());
