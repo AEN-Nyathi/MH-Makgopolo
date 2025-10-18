@@ -2,18 +2,18 @@ import Image from 'next/image';
 
 const teamMembers = [
   {
-    name: 'M.H. Makgopolo',
+    name: 'Mr M.H. Makgopolo',
     role: 'Founder & CEO',
     image: '/securityGuard.jpg',
   },
   {
-    name: 'Jane Doe',
+    name: 'Mr PROUD NGOBENI',
     role: 'Training Manager',
     image: '/securityGuard.jpg',
   },
   {
-    name: 'John Smith',
-    role: 'Lead Instructor',
+    name: 'Mr Hika',
+    role: 'Instructor',
     image: '/securityGuard.jpg',
   },
 ];
@@ -31,7 +31,7 @@ export default function Team() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {teamMembers.map((member) => (
             <div key={member.name} className="text-center">
-              <div className="relative w-48 h-48 mx-auto mb-4">
+              {/* <div className="relative w-48 h-48 mx-auto mb-4">
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -39,7 +39,7 @@ export default function Team() {
                   objectFit="cover"
                   className="rounded-full  object-top"
                 />
-              </div>
+              </div> */}
               <h3 className="font-bold text-xl mb-1">{member.name}</h3>
               <p className="text-gray-600">{member.role}</p>
             </div>
