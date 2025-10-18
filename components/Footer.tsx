@@ -58,7 +58,7 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-2">Get in Touch</h3>
             <div className="flex items-start space-x-3 text-sm">
               <MapPin className="h-5 w-5 text-blue-400 mt-1 flex-shrink-0" />
-              <p className="text-gray-400">123 Security Lane, Pretoria, Gauteng, 0002, South Africa</p>
+              <p className="text-gray-400">stand No. 411A, lulekani,Phalaborwa, 1392, South Africa. Next to post office</p>
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Phone className="h-5 w-5 text-blue-400" />
