@@ -35,7 +35,7 @@ export default async function CoursesPage() {
       {gradeCategories.map((category) => {
         const categoryCourses = courses.filter((course) =>
           category.filter.includes(course.grade_level)
-        );
+        ).sort((a, b) => a.order_index - b.order_index);
 
         if (categoryCourses.length === 0) return null;
 

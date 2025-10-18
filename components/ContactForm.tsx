@@ -18,15 +18,16 @@ import { Textarea } from "@/components/textarea"
 import { useToast } from "@/lib/use-toast"
 
 const formSchema = z.object({
-    name: z.string().min(2, {
+    full_name: z.string().min(2, {
         message: "Name must be at least 2 characters.",
     }),
     email: z.string().email({
         message: "Please enter a valid email address.",
     }),
-    subject: z.string().min(5, {
-        message: "Subject must be at least 5 characters.",
+    phone: z.string().min(10, {
+        message: "Please enter a valid phone number.",
     }),
+    course_interest: z.string().optional(),
     message: z.string().min(10, {
         message: "Message must be at least 10 characters.",
     }),
@@ -38,9 +39,10 @@ export default function ContactForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: "",
+            full_name: "",
             email: "",
-            subject: "",
+            phone: "",
+            course_interest: "",
             message: "",
         },
     })
@@ -78,7 +80,7 @@ export default function ContactForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                     control={form.control}
-                    name="name"
+                    name="full_name"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Full Name</FormLabel>
@@ -104,12 +106,25 @@ export default function ContactForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="subject"
+                    name="phone"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Subject</FormLabel>
+                            <FormLabel>Phone Number</FormLabel>
                             <FormControl>
-                                <Input placeholder="e.g., Course Inquiry" {...field} />
+                                <Input placeholder="+27 12 345 6789" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="course_interest"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Course of Interest (Optional)</FormLabel>
+                            <FormControl>
+                                <Input placeholder="e.g., Security Management" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

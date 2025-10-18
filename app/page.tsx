@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { db } from '@/firebase';
 import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
+import { Course } from '@/lib/types';
+import Slideshow from '@/components/Slideshow';
+import '@/components/slideshow.css';
 
 async function getFeaturedCourses() {
   const coursesCol = collection(db, 'courses');
@@ -13,8 +16,8 @@ async function getFeaturedCourses() {
 
   try {
     const querySnapshot = await getDocs(q);
-    const courses = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    return courses;
+    const courses = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Course));
+    return courses.sort((a, b) => a.order_index - b.order_index) ;
   } catch (error) {
     console.error('Error fetching courses:', error);
     // If you see this error, it's likely because you need to create a composite index in Firestore.
@@ -43,14 +46,14 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative bg-primary/75 text-white py-24 lg:py-32">
-        <div className="absolute inset-0">
+      <section className="relative  text-white py-24 lg:py-32">
+        <div className="absolute bg-blue-500 inset-0">
           <Image
             src="/securityGuard.jpg"
             alt="Professional security guards"
             layout="fill"
             objectFit="cover"
-            className="opacity-20 object-top"
+            className=" opacity-75 object-top"
           />
         </div>
         <div className="container mx-auto px-4 relative">
@@ -82,6 +85,8 @@ export default async function Home() {
 
       </section>
 
+      
+
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
@@ -112,7 +117,7 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {courses.length > 0 ? (
-              courses.map((course: any) => (
+              courses.map((course) => (
                 <Card key={course.id} className="card-elevated hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <Badge className="w-fit mb-2">{course.grade_level}</Badge>
@@ -169,7 +174,7 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="bg-white p-6 rounded-lg card-elevated">
-              <Shield className="h-12 w-12 text-blue-600 mb-4" />
+              <Image src="/Psira-Logo-1-1024x538.png" alt="Shield" width={70} height={50}   className="h-12  text-blue-600 mb-4" />
               <h3 className="font-bold text-xl mb-2">Trusted & Legitimate</h3>
               <p className="text-gray-600">
                 Fully accredited by PSIRA with a proven track record of producing qualified security professionals.
@@ -244,7 +249,9 @@ export default async function Home() {
           </div>
         </section>
       )}
-
+<section className="px-30 ">
+<Slideshow />
+</section>
       <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Security Career?</h2>

@@ -7,7 +7,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { full_name, email, phone, course_interest, message } = body;
+    const { full_name, email, phone, message, course_interest } = body;
 
     if (!full_name || !email || !phone || !message) {
       return NextResponse.json(
@@ -20,11 +20,10 @@ export async function POST(request: Request) {
       full_name,
       email,
       phone,
-      course_interest: course_interest || null,
       message,
-      source: 'Website Contact Form',
-      status: 'new',
-      created_at: serverTimestamp(),
+      course_interest: course_interest || null,
+      submission_date: serverTimestamp(),
+      status: 'New',
     };
 
     await addDoc(collection(db, 'contact_submissions'), submission);

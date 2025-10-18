@@ -4,6 +4,7 @@ import { Shield, Briefcase, Users, Building, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const services = [
   {
@@ -59,10 +60,12 @@ const ServicesPage: NextPage = () => {
               <CardDescription>{service.description}</CardDescription>
             </CardContent>
             <CardFooter className="justify-center">
-              <Link href={`/contact?service=${encodeURIComponent(service.title)}`}>
-                <Button variant="outline">
-                  Get a Quote <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <Link target="_blank" rel="noopener noreferrer" href={`https://wa.me/27726489722?text=I'm interested in a quote for ${service.title}`} >
+           
+                  <Button className='bg-green-500 text-white' variant="outline">
+                    Get a Quote <FaWhatsapp className="ml-2 h-4 w-4" />
+                  </Button>
+            
               </Link>
             </CardFooter>
           </Card>
