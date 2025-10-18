@@ -166,7 +166,7 @@ export default function RegistrationPage() {
                 We understand financial constraints. Ask about our flexible payment plans to make training more accessible.
               </p>
               <a
-                href="https://wa.me/27123456789?text=Hi! I'd like to inquire about payment options."
+                href="https://wa.me/27665664326?text=Hi! I'd like to inquire about payment options."
                 target="_blank"
                 rel="noopener noreferrer"
               >

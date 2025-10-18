@@ -57,7 +57,7 @@ export default function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="tel:+27123456789" className="flex items-center text-gray-700 hover:text-blue-600">
+            <a href="tel:+27665664326" className="flex items-center text-gray-700 hover:text-blue-600">
               <Phone className="h-4 w-4 mr-2" />
               <span className="font-medium">Call Us</span>
             </a>
@@ -90,7 +90,7 @@ export default function Header() {
               ))}
               <div className="pt-4 space-y-3">
                 <a
-                  href="tel:+27123456789"
+                  href="tel:+27665664326"
                   className="flex items-center text-gray-700 hover:text-blue-600 py-2"
                 >
                   <Phone className="h-4 w-4 mr-2" />

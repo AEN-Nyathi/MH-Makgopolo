@@ -1276,7 +1276,7 @@ export default function RegistrationPage() {
                 We understand financial constraints. Ask about our flexible payment plans to make training more accessible.
               </p>
               <a
-                href="https://wa.me/27123456789?text=Hi! I'd like to inquire about payment options."
+                href="https://wa.me/27665664326?text=Hi! I'd like to inquire about payment options."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -3076,7 +3076,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Phone className="h-5 w-5 text-blue-400" />
-              <a href="tel:+27123456789" className="text-gray-400 hover:text-white">+27 12 345 6789</a>
+              <a href="tel:+27665664326" className="text-gray-400 hover:text-white">+27 12 345 6789</a>
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Mail className="h-5 w-5 text-blue-400" />
@@ -3327,7 +3327,7 @@ export default function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="tel:+27123456789" className="flex items-center text-gray-700 hover:text-blue-600">
+            <a href="tel:+27665664326" className="flex items-center text-gray-700 hover:text-blue-600">
               <Phone className="h-4 w-4 mr-2" />
               <span className="font-medium">Call Us</span>
             </a>
@@ -3360,7 +3360,7 @@ export default function Header() {
               ))}
               <div className="pt-4 space-y-3">
                 <a
-                  href="tel:+27123456789"
+                  href="tel:+27665664326"
                   className="flex items-center text-gray-700 hover:text-blue-600 py-2"
                 >
                   <Phone className="h-4 w-4 mr-2" />
@@ -13801,7 +13801,7 @@ export default function RegistrationPage() {
                 We understand financial constraints. Ask about our flexible payment plans to make training more accessible.
               </p>
               <a
-                href="https://wa.me/27123456789?text=Hi! I'd like to inquire about payment options."
+                href="https://wa.me/27665664326?text=Hi! I'd like to inquire about payment options."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -13826,7 +13826,7 @@ export default function RegistrationPage() {
               </Button>
             </Link>
             <a
-              href="https://wa.me/27123456789?text=Hi! I'd like to register for a course."
+              href="https://wa.me/27665664326?text=Hi! I'd like to register for a course."
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -14930,7 +14930,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Phone className="h-5 w-5 text-blue-400" />
-              <a href="tel:+27123456789" className="text-gray-400 hover:text-white">+27 12 345 6789</a>
+              <a href="tel:+27665664326" className="text-gray-400 hover:text-white">+27 12 345 6789</a>
             </div>
             <div className="flex items-center space-x-3 text-sm">
               <Mail className="h-5 w-5 text-blue-400" />
@@ -15181,7 +15181,7 @@ export default function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="tel:+27123456789" className="flex items-center text-gray-700 hover:text-blue-600">
+            <a href="tel:+27665664326" className="flex items-center text-gray-700 hover:text-blue-600">
               <Phone className="h-4 w-4 mr-2" />
               <span className="font-medium">Call Us</span>
             </a>
@@ -15214,7 +15214,7 @@ export default function Header() {
               ))}
               <div className="pt-4 space-y-3">
                 <a
-                  href="tel:+27123456789"
+                  href="tel:+27665664326"
                   className="flex items-center text-gray-700 hover:text-blue-600 py-2"
                 >
                   <Phone className="h-4 w-4 mr-2" />
