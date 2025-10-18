@@ -60,7 +60,7 @@ const ServicesPage: NextPage = () => {
               <CardDescription>{service.description}</CardDescription>
             </CardContent>
             <CardFooter className="justify-center">
-              <Link target="_blank" rel="noopener noreferrer" href={`https://wa.me/27665664326?text=I'm interested in a quote for ${service.title}`} >
+              <Link target="_blank" rel="noopener noreferrer" href={`https://wa.me/27738475359?text=I'm interested in a quote for ${service.title}`} >
            
                   <Button className='bg-green-500 text-white' variant="outline">
                     Get a Quote <FaWhatsapp className="ml-2 h-4 w-4" />
