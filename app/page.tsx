@@ -9,6 +9,8 @@ import { collection, query, where, orderBy, limit, getDocs } from 'firebase/fire
 import { Course } from '@/lib/types';
 import Slideshow from '@/components/Slideshow';
 import '@/components/slideshow.css';
+import Terms from '@/components/Terms';
+import Team from '@/components/Team';
 
 async function getFeaturedCourses() {
   const coursesCol = collection(db, 'courses');
@@ -249,9 +251,11 @@ export default async function Home() {
           </div>
         </section>
       )}
-<section className="px-30 ">
-<Slideshow />
-</section>
+
+      <Team />
+      <section className="py-4  bg-blue-700 ">
+      <Slideshow />
+      </section>
       <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Security Career?</h2>
@@ -273,6 +277,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
+    
     </div>
   );
 }

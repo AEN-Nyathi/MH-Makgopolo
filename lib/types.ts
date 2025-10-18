@@ -67,15 +67,15 @@ export type ContactSubmission = {
   source?: string;
 };
 
+export type RegistrationStatus = 'New' | 'Contacted' | 'Enrolled' | 'Pending';
+
 export type CourseRegistration = {
-  course_id: string;
-  full_name: string;
-  email: string;
+  id: string;
+  fullName: string;
   phone: string;
-  id_number: string;
-  address: string;
-  emergency_contact_name: string;
-  emergency_contact_phone: string;
-  preferred_start_date?: string;
-  notes?: string;
+  email: string;
+  idNumber: string;
+  course: string;
+  createdAt: string;
+  status: RegistrationStatus;
 };

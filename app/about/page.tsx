@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { Shield, Target, Award, Users, Clock, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Team from '@/components/Team';
+import Slideshow from '@/components/Slideshow';
 
 export const metadata = {
   title: 'About Us | MH Makgopolo Security Training',
@@ -42,6 +44,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col">
       <section className="bg-gradient-to-br from-blue-800 to-blue-900 text-white py-20">
+        
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">About MH Makgopolo</h1>
@@ -164,6 +167,10 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Team />
+      <section className="py-4  bg-blue-700 ">
+      <Slideshow />
+      </section>
       <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Journey?</h2>
